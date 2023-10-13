@@ -1,0 +1,129 @@
+#%RAML 1.0
+title: BookMyHotelAPI
+baseUri: http://bookmyhotel.com
+mediaType:
+  - application/json
+
+types:
+  Error: !include datatypes/Error.raml
+  Hotel: !include datatypes/Hotel.raml
+  Registration: !include datatypes/Registration.raml
+  Status: !include datatypes/Status.raml
+
+/registrations:
+  displayName: This is the registration resources
+  get:
+    headers:
+      Accept?:
+    responses:
+      200:
+        headers:
+          Content-Type:
+            type: string
+        body: Registration[]
+      404:
+        body:
+          application/json:
+            example: Error
+  post:
+    headers:
+      Content-Type:
+        type: string
+        example: application/json
+    body: Registration
+    responses:
+      201:
+        headers:
+          Content-Type:
+            type: string
+            example: application/json
+          Location:
+            type: string
+            example: http://bookmyhotel.com/registrations/r1
+      501:
+        headers:
+          Content-Type:
+        body:
+          application/json:
+            example: Error
+
+  /{registrationId}:
+    get:
+      headers:
+        Accept?:
+          type: string
+          example: application/json
+      responses:
+        200:
+          headers:
+            Accept?:
+              type: string
+              example: application/json
+          body: Registration
+        404:
+          headers:
+            Accept?:
+              type: string
+              example: application/json
+          body: Error
+
+  patch:
+   headers:
+    Content-Type:
+      type: string
+      example: application/json
+   body: Registration
+   responses:
+    204:
+      headers:
+        Accept?:
+          type: string
+          example: application/json
+    500:
+      headers:
+        Content-Type:
+          type: string
+          example: application/json
+      body:
+        application/json:
+          example: Error
+  delete:
+      headers:
+        Accept?:
+          type: string
+          example: application/json
+      responses:
+        204:
+          headers:
+            Accept?:
+              type: string
+              example: application/json
+        404:
+          headers:
+            Accept?:
+              type: string
+              example: application/json
+
+/hotels:
+  get:
+    queryParameters:
+      city:
+        required: false
+      state:
+        required: false
+      country:
+        required: false
+  post:
+  /{hotelId}:
+    get:
+    patch:
+    delete:
+
+/bookings:
+  get:
+  patch:
+  delete:
+  /{bookingId}:
+    get:
+    patch:
+    delete:

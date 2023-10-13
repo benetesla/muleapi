@@ -1,0 +1,10 @@
+{
+  "version": "1.0.0-SNAPSHOT",
+  "apiVersion": "v1",
+  "descriptorVersion": "1.0.0",
+  "classifier": "raml",
+  "main": "bookmyhotelapi.raml",
+  "assetId": "BookMyHotelAPI",
+  "groupId": "",
+  "name": "BookMyHotelAPI"
+}
