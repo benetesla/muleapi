@@ -1,8 +1,11 @@
-#%RAML 1.0
+#RAML 1.0
+
 title: BookMyHotelAPI
 baseUri: http://bookmyhotel.com
 mediaType:
   - application/json
+documentation: 
+   - !include documentation\BookMyHotel.raml
 
 types:
   Error: !include datatypes/Error.raml
