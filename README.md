@@ -1,42 +1,61 @@
-# Book MULELOGIC API
+# MuleLogic
 
 ## Descrição
-A API Book MULELOGIC é uma aplicação que gerencia informações sobre livros e autores. Esta documentação fornece detalhes sobre como usar a API para realizar diversas operações relacionadas a livros e autores.
 
-## Documentação RAML
-Para acessar a documentação RAML completa da API Book MULELOGIC, por favor, visite o repositório oficial:
-[GitHub Book MULELOGIC](https://github.com/benetesla/muleapi.git)
+Este repositório contém a especificação RAML da API BookMyHotel. A API BookMyHotel permite o gerenciamento de hotéis, registros de hóspedes e reservas. Ela fornece funcionalidades para listar hotéis, criar registros de hóspedes e gerenciar reservas.
 
-A documentação RAML descreve em detalhes os endpoints, os métodos HTTP suportados, os parâmetros de entrada e os formatos de resposta.
+## Detalhes da API
+
+- **Base URI:** [http://bookmyhotel.com](http://bookmyhotel.com)
+- **Tipo de Mídia Suportado:** `application/json`
+
+## Tipos de Dados
+
+A API utiliza os seguintes tipos de dados:
+
+- `Error`: Erros gerais da API.
+- `Hotel`: Informações sobre hotéis.
+- `Registration`: Dados de registro de hóspedes.
+- `Status`: Status das operações da API.
 
 ## Recursos Principais
-A API Book MULELOGIC oferece os seguintes recursos:
 
-- Listagem de livros e autores
-- Detalhes de livros individuais
-- Adição de novos livros e autores
-- Atualização de informações de livros e autores
-- Exclusão de livros e autores
+### /registrations
 
-## Configuração
-Para utilizar a API Book MULELOGIC, você precisará configurar um ambiente apropriado. Certifique-se de que você tenha instalado as dependências necessárias e configurado as variáveis de ambiente, se aplicável.
+- **GET**: Recupera uma lista de registros de hóspedes.
+- **POST**: Cria um novo registro de hóspede.
+
+### /registrations/
+
+- **GET**: Obtém os detalhes de um registro de hóspede específico.
+- **PATCH**: Atualiza um registro de hóspede.
+- **DELETE**: Exclui um registro de hóspede.
+
+### /hotels
+
+- **GET**: Lista hotéis com base em parâmetros de consulta, como cidade, estado e país.
+- **POST**: Cria um novo hotel.
+
+### /hotels/
+
+- **GET**: Obtém informações detalhadas sobre um hotel específico.
+- **PATCH**: Atualiza informações de um hotel.
+- **DELETE**: Exclui um hotel.
+
+### /bookings
+
+- **GET**: Lista todas as reservas disponíveis.
+- **PATCH**: Atualiza informações de reserva.
+- **DELETE**: Exclui uma reserva.
+
+### /bookings/
+
+- **GET**: Obtém detalhes de uma reserva específica.
+- **PATCH**: Atualiza informações de uma reserva.
+- **DELETE**: Exclui uma reserva.
 
 ## Uso
-Após a configuração, você pode começar a usar a API seguindo a documentação RAML. Utilize ferramentas de desenvolvimento ou clientes HTTP para fazer chamadas aos endpoints e interagir com a aplicação.
 
-## Contribuições
-Contribuições são bem-vindas. Se você deseja contribuir para o desenvolvimento da API Book MULELOGIC, siga os passos abaixo:
-1. Faça um fork deste repositório.
-2. Crie um branch para sua contribuição: `git checkout -b feature/nova-funcionalidade`.
-3. Faça suas alterações.
-4. Envie um pull request para revisão.
+Você pode usar esta especificação RAML como base para criar a documentação completa da API BookMyHotel e implementar a API correspondente. Certifique-se de incluir exemplos e detalhes adicionais na documentação real, além de informações de autenticação e permissões, se necessário, para tornar a API totalmente funcional e compreensível para os usuários.
 
-## Suporte
-Se você tiver dúvidas, problemas ou precisar de ajuda com a API, entre em contato conosco através dos seguintes canais:
-- Email: [seu-email@exemplo.com](mailto:BENEVANIOSANTOS930@GMAIL.COM)
-- Issues no repositório: [Link para Issues](https://github.com/benetesla/muleapi/issues)
-
-## Licença
-Este projeto é licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
-Agradecemos por escolher a API Book MULELOGIC!
+Para detalhes completos sobre os parâmetros de solicitação, respostas e exemplos de uso, consulte o código RAML fornecido na pasta `datatypes`.
