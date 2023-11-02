@@ -5,37 +5,35 @@ get?:
       displayName: GET <<resourcePathName | !uppercamelcase | !singularize>> 
       description: Retrieve a specific <<resourcePathName | !uppercamelcase | !singularize>>
       is:
-      - hasError: {errorCode: 404}
-      - hasAcceptHeader
+       - traitsLib.hasAcceptHeader
+       - traitsLib.hasError: {errorCode: 404}
       responses:
         200:
           headers:
             Content-Type: 
           body:
-            <<resourcePathName | !uppercamelcase | !singularize>>
+             dataTypesLib.<<resourcePathName | !uppercamelcase | !singularize>>
+       
 patch?:
       displayName: PATCH <<resourcePathName | !uppercamelcase | !singularize>> 
       description: Update a specific <<resourcePathName | !uppercamelcase | !singularize>>
       is:
-      - hasError: {errorCode: 500}
+      - traitsLib.hasError: {errorCode: 500}
       body:
-        <<resourcePathName | !uppercamelcase | !singularize>>
+         dataTypesLib.<<resourcePathName | !uppercamelcase | !singularize>>
       responses:
         204:
-          headers:
-            Content-Type: 
-          body:
-            Status
+       
 delete?:
       displayName: DELETE <<resourcePathName | !uppercamelcase | !singularize>> 
       description: Delete a specific <<resourcePathName | !uppercamelcase | !singularize>>
       is:
-      - hasError: {errorCode: 404}
-      - hasAcceptHeader
+       - traitsLib.hasAcceptHeader
+       - traitsLib.hasError: {errorCode: 500}
       responses:
         200:
           headers:
             Content-Type: 
           body:
-            Status
-       
+             dataTypesLib.Status
+      

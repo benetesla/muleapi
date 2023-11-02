@@ -4,31 +4,25 @@ baseUri: http://bookmyhotel.com
 mediaType: 
   - application/json
 
-traits:
-  hasError: !include traits\hasError.raml
-  hasAcceptHeader: !include traits\hasAcceptHeader.raml
-resourceTypes:
-  collection: !include resourceTypes/collection.raml
-  member: !include resourceTypes/member.raml
 
-types:
-  Error: !include datatypes/Error.raml
-  Hotel: !include datatypes/Hotel.raml
-  Registration: !include datatypes/Registration.raml
-  Booking: !include datatypes/Booking.raml
-  Status: !include datatypes/Status.raml   
+uses:
+  traitsLib: libraries/TraitsLibrary.raml
+  resTypesLib:  libraries/ResourceTypesLibrary.raml
+  dataTypesLib: libraries/DataTypesLibrary.raml
+
+
 
 /registrations:
-  type: collection
+  type: resTypesLib.collection
   get:
   post:
   /{registrationId}:
-    type: member
+    type: resTypesLib.member
     get:
     patch:
     delete:
 /hotels:
-  type: collection
+  type: resTypesLib.collection
   get:
     queryParameters:
       city:
@@ -39,21 +33,21 @@ types:
         required: false
   post:
   /{hotelId}:
-    type: member
+    type: resTypesLib.member
     get:
     patch:
     delete:
     /bookings:
       description: Bookings of specific Hotel
-      type: collection
+      type: resTypesLib.collection
       get:
         
 /bookings:
-  type: collection
+  type: resTypesLib.collection
   get:
   post:
   /{bookingId}:
-    type: member
+    type: resTypesLib.member
     get:
     patch:
     delete:
