@@ -4,6 +4,9 @@ baseUri: http://bookmyhotel.com
 mediaType: 
   - application/json
 
+traits:
+  hasError: !include traits\hasError.raml
+  hasAcceptHeader: !include traits\hasAcceptHeader.raml
 resourceTypes:
   collection: !include resourceTypes/collection.raml
   member: !include resourceTypes/member.raml
