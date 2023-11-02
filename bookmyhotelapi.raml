@@ -4,7 +4,12 @@ baseUri: http://bookmyhotel.com
 mediaType: 
   - application/json
 
-
+securitySchemes:
+  basicAuth: !include security\basicAuth.raml
+  clienyIdEnforcement: !include security\ClientIdEnforcement.raml
+securedBy:
+  - basicAuth
+  - clienyIdEnforcement
 uses:
   traitsLib: libraries/TraitsLibrary.raml
   resTypesLib:  libraries/ResourceTypesLibrary.raml
@@ -16,6 +21,8 @@ uses:
   type: resTypesLib.collection
   get:
   post:
+  securedBy:
+    - clienyIdEnforcement
   /{registrationId}:
     type: resTypesLib.member
     get:
@@ -32,6 +39,8 @@ uses:
       country:
         required: false
   post:
+   securedBy:
+    - clienyIdEnforcement
   /{hotelId}:
     type: resTypesLib.member
     get:
@@ -46,6 +55,8 @@ uses:
   type: resTypesLib.collection
   get:
   post:
+   securedBy:
+    - clienyIdEnforcement
   /{bookingId}:
     type: resTypesLib.member
     get:
