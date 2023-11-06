@@ -3,6 +3,9 @@ title: BookMyHotelAPI
 baseUri: http://bookmyhotel.com
 mediaType: 
 - application/json
+resourceTypes:
+  collection: !include  resource\collection.raml
+    
 
 documentation:
   - !include documentation/BookMyHotelDoc.raml
@@ -15,24 +18,7 @@ types:
   Status: !include datatypes/Status.raml   
 
 /registrations:
-  displayName: Registrations 
-  description: All Registrations
-  get: 
-    displayName: GET Registrations
-    description: Retrieve a list of all Registrations
-    headers:
-      Accept?:   
-    responses:
-      200: 
-        headers:
-         Content-Type: 
-        body:
-          Registration[]
-      404: 
-        headers:
-         Content-Type: 
-        body:
-          Error
+  type: collection
       
   post:
     displayName: POST Registration
@@ -101,11 +87,8 @@ types:
           body:
             Error
 /hotels:
-  displayName: Hotels 
-  description: All Hotels
+  type: collection
   get:
-    displayName: GET Hotels
-    description: Retrieve a list of all Hotels
     headers:
       Accept?: 
         example: application/json
@@ -122,28 +105,8 @@ types:
           Content-Type: 
         body:
           Hotel[]
-      404:
-        headers:
-          Content-Type: 
-        body:
-          Error
-  post:
-    displayName: POST Hotel
-    description: Add a new Hotel
-    headers:
-      Content-Type: 
-    body:
-      Hotel
-    responses:
-      201:
-        headers:
-          Location: 
-            example: http://bookmyhotel.com/hotels/h1
-      500:
-        headers:
-          Content-Type: 
-        body:
-          Error
+   
+  
   /{hotelId}:
     displayName: Hotel 
     description: Specific Hotel
@@ -194,24 +157,7 @@ types:
           body:
             Error
     /bookings:
-      displayName: Bookings 
-      description: Bookings of specific Hotel
-      get:
-        displayName: GET Bookings
-        description: Retrieve a list of all Bookings for specific hotel
-        headers:
-          Accept?:
-        responses:
-          200:
-            headers:
-              Content-Type: 
-            body:
-              Booking[]
-          404:
-            headers:
-              Content-Type: 
-            body:
-              Error
+    type: collection
 /bookings:
   displayName: Bookings 
   description: All Bookings
@@ -295,5 +241,3 @@ types:
             Content-Type: 
           body:
             Error
-
-
