@@ -1,0 +1,39 @@
+#%RAML 1.0 ResourceType
+displayName: <<resourcePathName | !uppercamelcase | !singularize>>  
+description: Specific <<resourcePathName | !uppercamelcase | !singularize>> 
+get?:
+      displayName: GET <<resourcePathName | !uppercamelcase | !singularize>> 
+      description: Retrieve a specific <<resourcePathName | !uppercamelcase | !singularize>>
+      is:
+       - traitsLib.hasAcceptHeader
+       - traitsLib.hasError: {errorCode: 404}
+      responses:
+        200:
+          headers:
+            Content-Type: 
+          body:
+             dataTypesLib.<<resourcePathName | !uppercamelcase | !singularize>>
+       
+patch?:
+      displayName: PATCH <<resourcePathName | !uppercamelcase | !singularize>> 
+      description: Update a specific <<resourcePathName | !uppercamelcase | !singularize>>
+      is:
+      - traitsLib.hasError: {errorCode: 500}
+      body:
+         dataTypesLib.<<resourcePathName | !uppercamelcase | !singularize>>
+      responses:
+        204:
+       
+delete?:
+      displayName: DELETE <<resourcePathName | !uppercamelcase | !singularize>> 
+      description: Delete a specific <<resourcePathName | !uppercamelcase | !singularize>>
+      is:
+       - traitsLib.hasAcceptHeader
+       - traitsLib.hasError: {errorCode: 500}
+      responses:
+        200:
+          headers:
+            Content-Type: 
+          body:
+             dataTypesLib.Status
+      

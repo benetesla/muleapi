@@ -1,0 +1,29 @@
+#%RAML 1.0 ResourceType
+displayName: <<resourcePathName | !uppercamelcase>> 
+description: All <<resourcePathName | !uppercamelcase>>
+get?: 
+    displayName: GET <<resourcePathName | !uppercamelcase>>
+    description: Retrieve a list of all <<resourcePathName | !uppercamelcase>>
+    is:
+      - traitsLib.hasAcceptHeader
+      - traitsLib.hasError: {errorCode: 404}
+    responses:
+      200: 
+        headers:
+         Content-Type: 
+        body:
+         dataTypesLib.<<resourcePathName | !uppercamelcase | !singularize>>[]
+post?:
+    displayName: POST <<resourcePathName | !uppercamelcase | !singularize>>
+    description: Add a new <<resourcePathName | !uppercamelcase | !singularize>>
+    is:
+      - traitsLib.hasError: {errorCode: 500}
+    headers:
+      Content-Type: 
+    body:
+       dataTypesLib.<<resourcePathName | !uppercamelcase | !singularize>>
+    responses:
+      201:
+        headers:
+          Location:
+            example: http://bookmyhotel.com/<<resourcePathName>>/r1     

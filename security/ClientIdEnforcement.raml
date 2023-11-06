@@ -1,0 +1,12 @@
+#RAML 1.0 SecurityScheme
+type: x-ClienyIdEnforcement
+describedBy:
+    headers:
+        client_id:
+            description: The client ID
+            type: string
+            required: true
+        client_secret:
+            description: The client secret
+            type: string
+            required: true

@@ -1,0 +1,15 @@
+#%RAML 1.0 Library
+usage: Library of Traits
+traits:
+  hasAcceptHeader:
+    headers:
+      Accept?: 
+       example: application/json
+       description: MediaType of Expected Response
+  hasError:
+    responses:
+     <<errorCode>>:
+       headers:
+        Content-Type: 
+       body:
+        dataTypesLib.Error

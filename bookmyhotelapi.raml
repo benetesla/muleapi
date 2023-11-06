@@ -2,22 +2,30 @@
 title: BookMyHotelAPI
 baseUri: http://bookmyhotel.com
 mediaType: 
+<<<<<<< HEAD
 - application/json
 resourceTypes:
   collection: !include  resource\collection.raml
     
+=======
+  - application/json
 
-documentation:
-  - !include documentation/BookMyHotelDoc.raml
+securitySchemes:
+  basicAuth: !include security\basicAuth.raml
+  clienyIdEnforcement: !include security\ClientIdEnforcement.raml
+securedBy:
+  - basicAuth
+  - clienyIdEnforcement
+uses:
+  traitsLib: libraries/TraitsLibrary.raml
+  resTypesLib:  libraries/ResourceTypesLibrary.raml
+  dataTypesLib: libraries/DataTypesLibrary.raml
+>>>>>>> 9d1aa4f26a8d9e108c62cd74794f848f8c4dfc65
 
-types:
-  Error: !include datatypes/Error.raml
-  Hotel: !include datatypes/Hotel.raml
-  Registration: !include datatypes/Registration.raml
-  Booking: !include datatypes/Booking.raml
-  Status: !include datatypes/Status.raml   
+
 
 /registrations:
+<<<<<<< HEAD
   type: collection
       
   post:
@@ -92,6 +100,21 @@ types:
     headers:
       Accept?: 
         example: application/json
+=======
+  type: resTypesLib.collection
+  get:
+  post:
+  securedBy:
+    - clienyIdEnforcement
+  /{registrationId}:
+    type: resTypesLib.member
+    get:
+    patch:
+    delete:
+/hotels:
+  type: resTypesLib.collection
+  get:
+>>>>>>> 9d1aa4f26a8d9e108c62cd74794f848f8c4dfc65
     queryParameters:
       city:
         required: false
@@ -99,6 +122,7 @@ types:
         required: false
       country:
         required: false
+<<<<<<< HEAD
     responses:
       200:
         headers:
@@ -107,113 +131,36 @@ types:
           Hotel[]
    
   
-  /{hotelId}:
-    displayName: Hotel 
-    description: Specific Hotel
-    get:
-      displayName: GET Hotel
-      description: Retrieve a specific Hotel
-      headers:
-        Accept?:
-      responses:
-        200:
-          headers:
-            Content-Type: 
-          body:   
-            Hotel
-        404:
-          headers:
-            Content-Type: 
-          body: 
-            Error
-    patch:
-      displayName: PATCH Hotel
-      description: Update a specific Hotel
-      headers:
-        Content-Type: 
-      body:
-        Hotel
-      responses:
-        204:
-        500:
-          headers:
-            Content-Type: 
-          body:
-            Error
-    delete:
-      displayName: DELETE Hotel
-      description: Delete a specific Hotel
-      headers:
-        Accept?:
-      responses:
-        200:
-          headers:
-            Content-Type: 
-          body:
-            Status
-        404:
-          headers:
-            Content-Type: 
-          body:
-            Error
-    /bookings:
-    type: collection
-/bookings:
-  displayName: Bookings 
-  description: All Bookings
-  get:
-    displayName: GET Bookings
-    description: Retrieve a list of all Bookings
-    headers:
-      Accept?: 
-    responses:
-      200:
-        headers:
-          Content-Type: 
-        body:
-          Booking[]
-      404:
-        headers:
-          Content-Type: 
-        body:
-          Error
+=======
   post:
-    displayName: POST Booking
-    description: Add a new Booking
-    headers:
-      Content-Type: 
-    body:
-      Booking
-    responses:
-      201:
-        headers:
-          Location:
-            example: http://bookmyhotel.com/bookings/b1
-      500:
-        headers:
-          Content-Type: 
-        body:
-          Error
-  /{bookingId}:
-    displayName: Booking 
-    description: Specific Booking
+   securedBy:
+    - clienyIdEnforcement
+>>>>>>> 9d1aa4f26a8d9e108c62cd74794f848f8c4dfc65
+  /{hotelId}:
+    type: resTypesLib.member
     get:
-      displayName: GET Booking 
-      description: Retrieve a specific Booking
-      headers:
-        Accept?: 
-      responses:
-        200:
-          headers:
-            Content-Type: 
-          body:
-            Booking
-        404:
-          headers:
-            Content-Type: 
-          body:
-            Error
     patch:
+    delete:
+    /bookings:
+<<<<<<< HEAD
+    type: collection
+=======
+      description: Bookings of specific Hotel
+      type: resTypesLib.collection
+      get:
+        
+>>>>>>> 9d1aa4f26a8d9e108c62cd74794f848f8c4dfc65
+/bookings:
+  type: resTypesLib.collection
+  get:
+  post:
+   securedBy:
+    - clienyIdEnforcement
+  /{bookingId}:
+    type: resTypesLib.member
+    get:
+    patch:
+<<<<<<< HEAD
       displayName: PATCH Booking 
       description: Update a specific Booking
       body:
@@ -241,3 +188,6 @@ types:
             Content-Type: 
           body:
             Error
+=======
+    delete:
+>>>>>>> 9d1aa4f26a8d9e108c62cd74794f848f8c4dfc65

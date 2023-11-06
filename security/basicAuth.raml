@@ -1,0 +1,8 @@
+#%RAML 1.0 SecurityScheme
+type: Basic Authentication
+describedBy:
+  headers:
+    Authorization:
+      description: Used to send a valid Basic Authentication credentials.
+      type: string
+      required: true
